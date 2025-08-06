@@ -1,8 +1,3 @@
----
-title: project_spec.md
-
----
-
 # **CaveTracker**
 
 ## Table of Contents
