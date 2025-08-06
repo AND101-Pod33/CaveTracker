@@ -34,7 +34,7 @@ fun DashboardScreen(
         item {
             // Header
             Text(
-                text = "🏔️ CAVE DASHBOARD",
+                text = "🏔️ TRIBE COMMAND",
                 style = MaterialTheme.typography.displayMedium,
                 color = SaddleBrown,
                 modifier = Modifier.fillMaxWidth(),

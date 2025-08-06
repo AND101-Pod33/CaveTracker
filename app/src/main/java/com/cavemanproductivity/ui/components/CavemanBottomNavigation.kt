@@ -32,31 +32,31 @@ fun CavemanBottomNavigation(
     val items = listOf(
         BottomNavItem(
             route = CavemanDestinations.Dashboard.route,
-            title = "Cave",
+            title = "Tribe",
             icon = { CaveIcons.Cave(color = DarkSlateGray, size = 20) },
             selectedIcon = { CaveIcons.Cave(color = Tomato, size = 20) }
         ),
         BottomNavItem(
             route = CavemanDestinations.HabitCave.route,
-            title = "Habits",
+            title = "Fires",
             icon = { CaveIcons.Fire(color = DarkSlateGray, size = 20) },
             selectedIcon = { CaveIcons.Fire(color = Tomato, size = 20) }
         ),
         BottomNavItem(
             route = CavemanDestinations.TaskRocks.route,
-            title = "Tasks",
+            title = "Hunt",
             icon = { CaveIcons.Rock(color = DarkSlateGray, size = 20) },
             selectedIcon = { CaveIcons.Rock(color = Tomato, size = 20) }
         ),
         BottomNavItem(
             route = CavemanDestinations.MoonCalendar.route,
-            title = "Moon",
+            title = "Stars",
             icon = { CaveIcons.Moon(color = DarkSlateGray, size = 20) },
             selectedIcon = { CaveIcons.Moon(color = Tomato, size = 20) }
         ),
         BottomNavItem(
             route = CavemanDestinations.FireFocus.route,
-            title = "Focus",
+            title = "Rage",
             icon = { CaveIcons.Spear(color = DarkSlateGray, size = 20) },
             selectedIcon = { CaveIcons.Spear(color = Tomato, size = 20) }
         )
@@ -105,9 +105,6 @@ fun CavemanBottomNavigation(
                 onClick = {
                     if (currentRoute != item.route) {
                         navController.navigate(item.route) {
-                            popUpTo(navController.graph.startDestinationId) {
-                                saveState = true
-                            }
                             launchSingleTop = true
                             restoreState = true
                         }

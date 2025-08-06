@@ -56,6 +56,7 @@ fun StoneTablet(
                     shape = RoundedCornerShape(16.dp)
                 )
                 .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
             content = content
         )
     }
