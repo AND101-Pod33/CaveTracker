@@ -99,13 +99,14 @@ Task list screen showing tasks as stone tablets with different sized rock icons 
 
 The focus timer interface featuring a large circular timer styled as a campfire, mode selection buttons for Pomodoro and Stopwatch, and session tracking. Stone-styled control buttons maintain the caveman aesthetic.
 
-
 ### Statistics Dashboard - "Cave Progress"
 <img src="wireframes/wireframe_stats.jpg" width=600>
 
 This wireframe shows the statistics screen with weekly overview charts, habit streaks displayed as growing fires, and focus time tracking. Features time period selectors (Week/Month/Year) and the signature caveman navigation bar.
 
 ### [BONUS] Digital Wireframes & Mockups
+
+<img src="wireframes/wireframe_digital.jpg" width=600>
 
 ## Build Notes
 
