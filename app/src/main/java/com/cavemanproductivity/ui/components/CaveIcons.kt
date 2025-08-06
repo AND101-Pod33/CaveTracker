@@ -82,6 +82,17 @@ object CaveIcons {
             drawCave(color)
         }
     }
+    
+    @Composable
+    fun Trophy(
+        modifier: Modifier = Modifier,
+        color: Color = DarkSlateGray,
+        size: Int = 24
+    ) {
+        Canvas(modifier = modifier.size(size.dp)) {
+            drawTrophy(color)
+        }
+    }
 }
 
 private fun DrawScope.drawFire(color: Color) {
@@ -226,4 +237,61 @@ private fun DrawScope.drawCave(color: Color) {
         close()
     }
     drawPath(path, color = color, style = Stroke(width = 4f))
+}
+
+private fun DrawScope.drawTrophy(color: Color) {
+    val strokeWidth = 3f
+    
+    // Trophy base
+    drawLine(
+        color = color,
+        start = Offset(size.width * 0.3f, size.height * 0.9f),
+        end = Offset(size.width * 0.7f, size.height * 0.9f),
+        strokeWidth = strokeWidth
+    )
+    
+    // Trophy stem
+    drawLine(
+        color = color,
+        start = Offset(size.width * 0.5f, size.height * 0.9f),
+        end = Offset(size.width * 0.5f, size.height * 0.7f),
+        strokeWidth = strokeWidth
+    )
+    
+    // Trophy cup
+    val cupPath = Path().apply {
+        moveTo(size.width * 0.3f, size.height * 0.7f)
+        quadraticBezierTo(
+            size.width * 0.2f, size.height * 0.5f,
+            size.width * 0.3f, size.height * 0.3f
+        )
+        quadraticBezierTo(
+            size.width * 0.4f, size.height * 0.2f,
+            size.width * 0.5f, size.height * 0.2f
+        )
+        quadraticBezierTo(
+            size.width * 0.6f, size.height * 0.2f,
+            size.width * 0.7f, size.height * 0.3f
+        )
+        quadraticBezierTo(
+            size.width * 0.8f, size.height * 0.5f,
+            size.width * 0.7f, size.height * 0.7f
+        )
+        close()
+    }
+    drawPath(cupPath, color = color, style = Stroke(width = strokeWidth))
+    
+    // Trophy handles
+    drawLine(
+        color = color,
+        start = Offset(size.width * 0.3f, size.height * 0.5f),
+        end = Offset(size.width * 0.2f, size.height * 0.4f),
+        strokeWidth = strokeWidth
+    )
+    drawLine(
+        color = color,
+        start = Offset(size.width * 0.7f, size.height * 0.5f),
+        end = Offset(size.width * 0.8f, size.height * 0.4f),
+        strokeWidth = strokeWidth
+    )
 }

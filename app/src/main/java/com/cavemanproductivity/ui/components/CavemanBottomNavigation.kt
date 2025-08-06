@@ -59,6 +59,12 @@ fun CavemanBottomNavigation(
             title = "Rage",
             icon = { CaveIcons.Spear(color = DarkSlateGray, size = 20) },
             selectedIcon = { CaveIcons.Spear(color = Tomato, size = 20) }
+        ),
+        BottomNavItem(
+            route = CavemanDestinations.Stats.route,
+            title = "Wisdom",
+            icon = { CaveIcons.Trophy(color = DarkSlateGray, size = 20) },
+            selectedIcon = { CaveIcons.Trophy(color = Tomato, size = 20) }
         )
     )
     

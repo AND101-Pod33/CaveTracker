@@ -12,6 +12,7 @@ import com.cavemanproductivity.ui.screens.habits.HabitCaveScreen
 import com.cavemanproductivity.ui.screens.tasks.TaskRocksScreen
 import com.cavemanproductivity.ui.screens.calendar.MoonCalendarScreen
 import com.cavemanproductivity.ui.screens.focus.FireFocusScreen
+import com.cavemanproductivity.ui.screens.stats.StatsScreen
 import com.cavemanproductivity.ui.screens.settings.ChiefSettingsScreen
 
 @Composable
@@ -66,6 +67,10 @@ fun CavemanNavigation(
         
         composable(CavemanDestinations.FireFocus.route) {
             FireFocusScreen(navController = navController)
+        }
+        
+        composable(CavemanDestinations.Stats.route) {
+            StatsScreen(navController = navController)
         }
         
         composable(CavemanDestinations.ChiefSettings.route) {

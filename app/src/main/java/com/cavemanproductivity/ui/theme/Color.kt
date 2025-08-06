@@ -26,3 +26,10 @@ val StoneDark = Color(0xFFCD853F)
 val FireYellow = Color(0xFFFFD700)
 val FireOrange = Color(0xFFFF8C00)
 val FireRed = Color(0xFFDC143C)
+
+// Additional colors for stats screen
+val Gold = Color(0xFFFFD700)
+val Orange = Color(0xFFFFA500)
+val Brown = Color(0xFF8B4513)
+val Red = Color(0xFFFF0000)
+val Silver = Color(0xFFC0C0C0)

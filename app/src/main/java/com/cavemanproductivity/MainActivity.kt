@@ -45,6 +45,7 @@ fun CavemanApp() {
         CavemanDestinations.TaskRocks.route,
         CavemanDestinations.MoonCalendar.route,
         CavemanDestinations.FireFocus.route,
+        CavemanDestinations.Stats.route,
         CavemanDestinations.ChiefSettings.route -> true
         else -> false
     }

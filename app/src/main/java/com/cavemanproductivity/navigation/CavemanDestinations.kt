@@ -6,6 +6,7 @@ sealed class CavemanDestinations(val route: String) {
     object TaskRocks : CavemanDestinations("task_rocks")
     object MoonCalendar : CavemanDestinations("moon_calendar")
     object FireFocus : CavemanDestinations("fire_focus")
+    object Stats : CavemanDestinations("stats")
     object ChiefSettings : CavemanDestinations("chief_settings")
     
     // Detail screens
