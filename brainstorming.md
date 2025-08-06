@@ -1,8 +1,3 @@
----
-title: Untitled
-
----
-
 AND101 Pod #33 - App Brainstorming
 ===
 
