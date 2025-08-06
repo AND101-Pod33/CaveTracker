@@ -1,0 +1,29 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp"
+    android:height="48dp"
+    android:viewportWidth="48"
+    android:viewportHeight="48">
+  <!-- Cave background -->
+  <path
+      android:fillColor="#F5DEB3"
+      android:pathData="M0,0h48v48h-48z"/>
+  <!-- Stone circle -->
+  <path
+      android:fillColor="#DEB887"
+      android:pathData="M24,24m-20,0a20,20 0,1 1,40 0a20,20 0,1 1,-40 0"/>
+  <!-- Inner stone -->
+  <path
+      android:fillColor="#8B4513"
+      android:pathData="M24,24m-16,0a16,16 0,1 1,32 0a16,16 0,1 1,-32 0"/>
+  <!-- Fire symbol -->
+  <path
+      android:fillColor="#FF6347"
+      android:pathData="M24,12L20,20L22,22L24,21L26,22L28,20L24,12Z"/>
+  <!-- Cave painting elements -->
+  <path
+      android:fillColor="#2F4F4F"
+      android:pathData="M16,28Q16,24 20,24Q24,24 24,28L24,32Q20,32 16,32Z"/>
+  <path
+      android:fillColor="#2F4F4F"
+      android:pathData="M24,28Q24,24 28,24Q32,24 32,28L32,32Q28,32 24,32Z"/>
+</vector>
