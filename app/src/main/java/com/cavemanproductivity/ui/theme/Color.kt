@@ -16,6 +16,7 @@ val OrangeRed = Color(0xFFFF4500)        // Error/urgent
 val DarkGoldenrod = Color(0xFFB8860B)    // Warning
 val OliveDrab = Color(0xFF6B8E23)        // Success/completed
 val RosyBrown = Color(0xFFBC8F8F)        // Muted accent
+val White = Color(0xFFFFFFFF)            // Pure white for buttons
 
 // Stone texture colors for gradients
 val StoneLight = Color(0xFFF0E68C)

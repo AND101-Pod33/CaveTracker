@@ -5,6 +5,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -24,64 +25,77 @@ fun HabitCaveScreen(
 ) {
     val uiState by viewModel.uiState.collectAsState()
     
-    Box(modifier = Modifier.fillMaxSize()) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
-            // Header
-            Text(
-                text = "🔥 SACRED FIRES",
-                style = MaterialTheme.typography.displayMedium,
-                color = SaddleBrown,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth()
-            )
-            
-            Spacer(modifier = Modifier.height(24.dp))
-            
-            if (uiState.isLoading) {
-                Box(
-                    modifier = Modifier.fillMaxWidth().height(200.dp),
-                    contentAlignment = Alignment.Center
-                ) {
-                    CircularProgressIndicator(color = Tomato)
-                }
-            } else if (uiState.habits.isEmpty()) {
-                EmptyHabitsState(onAddClick = { viewModel.showAddDialog() })
-            } else {
-                LazyColumn(
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
-                ) {
-                    items(uiState.habits) { habit ->
-                        HabitCard(
-                            habit = habit,
-                            isCompletedToday = viewModel.isHabitCompletedToday(habit),
-                            onComplete = { viewModel.completeHabit(habit.id) },
-                            onEdit = { viewModel.startEditingHabit(habit) },
-                            onDelete = { viewModel.deleteHabit(habit) }
-                        )
+    Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { viewModel.showAddDialog() },
+                containerColor = Tomato,
+                contentColor = White
+            ) {
+                Icon(Icons.Default.Add, contentDescription = "Add Habit")
+            }
+        }
+    ) { padding ->
+        Box(modifier = Modifier.fillMaxSize()) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+                    .padding(padding)
+            ) {
+                // Header
+                Text(
+                    text = "🔥 SACRED FIRES",
+                    style = MaterialTheme.typography.displayMedium,
+                    color = SaddleBrown,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                
+                Spacer(modifier = Modifier.height(24.dp))
+                
+                if (uiState.isLoading) {
+                    Box(
+                        modifier = Modifier.fillMaxWidth().height(200.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator(color = Tomato)
+                    }
+                } else if (uiState.habits.isEmpty()) {
+                    EmptyHabitsState(onAddClick = { viewModel.showAddDialog() })
+                } else {
+                    LazyColumn(
+                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        items(uiState.habits) { habit ->
+                            HabitCard(
+                                habit = habit,
+                                isCompletedToday = viewModel.isHabitCompletedToday(habit),
+                                onComplete = { viewModel.completeHabit(habit.id) },
+                                onEdit = { viewModel.startEditingHabit(habit) },
+                                onDelete = { viewModel.deleteHabit(habit) }
+                            )
+                        }
                     }
                 }
             }
-        }
-        
-        // Add/Edit Dialog
-        if (uiState.showAddDialog) {
-            AddHabitDialog(
-                onDismiss = { viewModel.hideAddDialog() },
-                onConfirm = { name, description, frequency, category, customInterval ->
-                    viewModel.addHabit(name, description, frequency, category, customInterval)
+            
+            // Add/Edit Dialog
+            if (uiState.showAddDialog) {
+                AddHabitDialog(
+                    onDismiss = { viewModel.hideAddDialog() },
+                    onConfirm = { name, description, frequency, category, customInterval ->
+                        viewModel.addHabit(name, description, frequency, category, customInterval)
+                    }
+                )
+            }
+            
+            // Error handling
+            uiState.error?.let { error ->
+                LaunchedEffect(error) {
+                    // Show error snackbar or dialog
+                    viewModel.clearError()
                 }
-            )
-        }
-        
-        // Error handling
-        uiState.error?.let { error ->
-            LaunchedEffect(error) {
-                // Show error snackbar or dialog
-                viewModel.clearError()
             }
         }
     }
@@ -149,6 +163,18 @@ fun HabitCard(
                             text = "✅ Done Today!",
                             style = MaterialTheme.typography.labelMedium,
                             color = OliveDrab
+                        )
+                    }
+                    
+                    // Delete button
+                    IconButton(
+                        onClick = onDelete,
+                        modifier = Modifier.size(32.dp)
+                    ) {
+                        Icon(
+                            Icons.Default.Delete,
+                            contentDescription = "Delete Habit",
+                            tint = OrangeRed
                         )
                     }
                 }

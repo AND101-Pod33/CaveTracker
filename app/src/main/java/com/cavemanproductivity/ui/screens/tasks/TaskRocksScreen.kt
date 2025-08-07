@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -28,84 +29,97 @@ fun TaskRocksScreen(
 ) {
     val uiState by viewModel.uiState.collectAsState()
     
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        // Header
-        Text(
-            text = "🗿 HUNTING GROUNDS",
-            style = MaterialTheme.typography.displayMedium,
-            color = SaddleBrown,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth()
-        )
-        
-        Spacer(modifier = Modifier.height(24.dp))
-        
-        // Priority Filter Chips
-        LazyRow(
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            contentPadding = PaddingValues(horizontal = 16.dp),
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            item {
-                FilterChip(
-                    selected = uiState.filterPriority == null,
-                    onClick = { viewModel.setFilterPriority(null) },
-                    label = { Text("All Rocks") }
-                )
-            }
-            items(Priority.values()) { priority ->
-                FilterChip(
-                    selected = uiState.filterPriority == priority,
-                    onClick = { viewModel.setFilterPriority(priority) },
-                    label = { Text(priority.displayName) }
-                )
+    Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = { viewModel.showAddDialog() },
+                containerColor = Tomato,
+                contentColor = White
+            ) {
+                Icon(Icons.Default.Add, contentDescription = "Add Task")
             }
         }
-        
-        Spacer(modifier = Modifier.height(16.dp))
-        
-        if (uiState.isLoading) {
-            Box(
-                modifier = Modifier.fillMaxWidth().height(200.dp),
-                contentAlignment = Alignment.Center
+    ) { padding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+                .padding(padding)
+        ) {
+            // Header
+            Text(
+                text = "🗿 HUNTING GROUNDS",
+                style = MaterialTheme.typography.displayMedium,
+                color = SaddleBrown,
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth()
+            )
+            
+            Spacer(modifier = Modifier.height(24.dp))
+            
+            // Priority Filter Chips
+            LazyRow(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                contentPadding = PaddingValues(horizontal = 16.dp),
+                modifier = Modifier.fillMaxWidth()
             ) {
-                CircularProgressIndicator(color = Tomato)
-            }
-        } else if (uiState.tasks.isEmpty()) {
-            EmptyTasksState(onAddClick = { viewModel.showAddDialog() })
-        } else {
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                items(uiState.tasks) { task ->
-                    TaskCard(
-                        task = task,
-                        onComplete = { viewModel.completeTask(task.id) },
-                        onEdit = { viewModel.startEditingTask(task) },
-                        onDelete = { viewModel.deleteTask(task) }
+                item {
+                    FilterChip(
+                        selected = uiState.filterPriority == null,
+                        onClick = { viewModel.setFilterPriority(null) },
+                        label = { Text("All Rocks") }
+                    )
+                }
+                items(Priority.values()) { priority ->
+                    FilterChip(
+                        selected = uiState.filterPriority == priority,
+                        onClick = { viewModel.setFilterPriority(priority) },
+                        label = { Text(priority.displayName) }
                     )
                 }
             }
-        }
-        
-        // Add Task Dialog
-        if (uiState.showAddDialog) {
-            AddTaskDialog(
-                onDismiss = { viewModel.hideAddDialog() },
-                onConfirm = { title, description, category, priority, dueDate, estimatedMinutes ->
-                    viewModel.addTask(title, description, category, priority, dueDate, estimatedMinutes)
+            
+            Spacer(modifier = Modifier.height(16.dp))
+            
+            if (uiState.isLoading) {
+                Box(
+                    modifier = Modifier.fillMaxWidth().height(200.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    CircularProgressIndicator(color = Tomato)
                 }
-            )
-        }
-        
-        // Error handling
-        uiState.error?.let { error ->
-            LaunchedEffect(error) {
-                viewModel.clearError()
+            } else if (uiState.tasks.isEmpty()) {
+                EmptyTasksState(onAddClick = { viewModel.showAddDialog() })
+            } else {
+                LazyColumn(
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    items(uiState.tasks) { task ->
+                        TaskCard(
+                            task = task,
+                            onComplete = { viewModel.completeTask(task.id) },
+                            onEdit = { viewModel.startEditingTask(task) },
+                            onDelete = { viewModel.deleteTask(task) }
+                        )
+                    }
+                }
+            }
+            
+            // Add Task Dialog
+            if (uiState.showAddDialog) {
+                AddTaskDialog(
+                    onDismiss = { viewModel.hideAddDialog() },
+                    onConfirm = { title, description, category, priority, dueDate, estimatedMinutes ->
+                        viewModel.addTask(title, description, category, priority, dueDate, estimatedMinutes)
+                    }
+                )
+            }
+            
+            // Error handling
+            uiState.error?.let { error ->
+                LaunchedEffect(error) {
+                    viewModel.clearError()
+                }
             }
         }
     }
@@ -181,16 +195,30 @@ fun TaskCard(
                     }
                 }
                 
-                if (!task.isCompleted) {
-                    StoneButton(onClick = onComplete) {
-                        Text("Complete")
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    if (!task.isCompleted) {
+                        StoneButton(onClick = onComplete) {
+                            Text("Complete")
+                        }
+                    } else {
+                        Text(
+                            text = "✅ Done!",
+                            style = MaterialTheme.typography.labelMedium,
+                            color = OliveDrab
+                        )
                     }
-                } else {
-                    Text(
-                        text = "✅ Done!",
-                        style = MaterialTheme.typography.labelMedium,
-                        color = OliveDrab
-                    )
+                    
+                    // Delete button
+                    IconButton(
+                        onClick = onDelete,
+                        modifier = Modifier.size(32.dp)
+                    ) {
+                        Icon(
+                            Icons.Default.Delete,
+                            contentDescription = "Delete Task",
+                            tint = OrangeRed
+                        )
+                    }
                 }
             }
         }
