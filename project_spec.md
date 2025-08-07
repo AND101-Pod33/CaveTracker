@@ -133,11 +133,30 @@ process, or what you learned this unit!
 - Custom theming with Material Design 3
 - API integration with offline fallback strategies
 
-For Milestone 2, include **2+ Videos/GIFs** of the build process here!
+## GIFs of the build process
+
+**Base App with placeholders**
+
+<div>
+    <a href="https://www.loom.com/share/7d99b104871d420f84b99e9c98a884d6">
+    </a>
+    <a href="https://www.loom.com/share/7d99b104871d420f84b99e9c98a884d6">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/7d99b104871d420f84b99e9c98a884d6-136affc572ecae69-full-play.gif">
+    </a>
+  </div>
+
+**Updated CRUD Features**
+<div>
+    <a href="https://www.loom.com/share/6151327a37bf45198433c4010697f73f">
+    </a>
+    <a href="https://www.loom.com/share/6151327a37bf45198433c4010697f73f">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/6151327a37bf45198433c4010697f73f-3a3822e8b8f8e8f6-full-play.gif">
+    </a>
+  </div>
 
 ## License
 
-Copyright **2024** **Your Name**
+Copyright **2025** **Joel Vasquez, Uzair Macy, Rezwan Islam**
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

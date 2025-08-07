@@ -37,7 +37,13 @@ The following REQUIRED files are included:
 
 Here's a video that demos all of the app's implemented features:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Demo' width='' alt='Video Demo' />
+<div>
+    <a href="https://www.loom.com/share/7d99b104871d420f84b99e9c98a884d6">
+    </a>
+    <a href="https://www.loom.com/share/7d99b104871d420f84b99e9c98a884d6">
+      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/7d99b104871d420f84b99e9c98a884d6-136affc572ecae69-full-play.gif">
+    </a>
+  </div>
 
 VIDEO created with **Loom**
 
